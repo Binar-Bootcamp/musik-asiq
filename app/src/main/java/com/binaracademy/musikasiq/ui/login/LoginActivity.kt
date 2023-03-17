@@ -1,4 +1,4 @@
-package com.binaracademy.musikasiq.ui.main.login
+package com.binaracademy.musikasiq.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

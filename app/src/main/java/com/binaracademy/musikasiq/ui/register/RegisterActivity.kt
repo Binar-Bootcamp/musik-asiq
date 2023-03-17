@@ -1,4 +1,4 @@
-package com.binaracademy.musikasiq.ui.main.register
+package com.binaracademy.musikasiq.ui.register
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,6 +13,9 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        binding.btnRegisNext.setOnClickListener{
+
+        }
 
     }
 }
