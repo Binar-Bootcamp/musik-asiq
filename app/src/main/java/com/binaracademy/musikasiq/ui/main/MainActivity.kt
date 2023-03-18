@@ -2,8 +2,6 @@ package com.binaracademy.musikasiq.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageView
 import com.binaracademy.musikasiq.R
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -20,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 		
 		val navHostFragment = binding.containerFragment.getFragment<NavHostFragment>()
 		navController = navHostFragment.navController
+		binding.bottomNav.itemIconTintList = null
 		binding.bottomNav.setupWithNavController(navController)
 		
 		binding.fab.setOnClickListener {
