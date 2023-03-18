@@ -5,6 +5,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "example")
 data class Example(
-    @PrimaryKey(autoGenerate = true) var id: String,
+    @PrimaryKey(autoGenerate = true) var id: Int,
     var name: String
 )
