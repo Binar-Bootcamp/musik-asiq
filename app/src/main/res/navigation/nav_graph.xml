@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/home_fragment">
+
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="com.binaracademy.musikasiq.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_fragment_to_favorite_fragment"
+            app:destination="@id/favorite_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favorite_fragment"
+        android:name="com.binaracademy.musikasiq.ui.favorite.FavoriteFragment"
+        android:label="Favortie"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_favorite_fragment_to_list_song_fragment"
+            app:destination="@id/list_song_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/list_song_fragment"
+        android:name="com.binaracademy.musikasiq.ui.listsong.ListSongFragment"
+        android:label="List Song"
+        tools:layout="@layout/fragment_list_song">
+        <action
+            android:id="@+id/action_list_song_fragment_to_relaxation_fragment"
+            app:destination="@id/relaxation_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/relaxation_fragment"
+        android:name="com.binaracademy.musikasiq.ui.relaxation.RelaxationFragment"
+        android:label="Relaxation"
+        tools:layout="@layout/fragment_relaxation" />
+</navigation>
