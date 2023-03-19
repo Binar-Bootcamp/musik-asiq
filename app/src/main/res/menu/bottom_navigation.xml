@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/relaxation_fragment"
+        android:icon="@drawable/nav_relaxation_selector"
+        android:title="@string/relaxation" />
+
+    <item
+        android:id="@+id/list_song_fragment"
+        android:icon="@drawable/nav_list_song_selector"
+        android:title="@string/list_song" />
+
+    <item
+        android:id="@+id/favorite_fragment"
+        android:icon="@drawable/nav_favorite_selector"
+        android:title="@string/favorite" />
+
+    <item
+        android:id="@+id/home_fragment"
+        android:title="" />
+
+</menu>
