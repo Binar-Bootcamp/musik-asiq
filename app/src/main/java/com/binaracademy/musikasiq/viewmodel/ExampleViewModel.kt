@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.binaracademy.musikasiq.data.repository.local.ExampleRepository
 import com.binaracademy.musikasiq.data.repository.local.ExampleRepositoryImpl
+import com.binaracademy.musikasiq.data.room.User
 import kotlinx.coroutines.launch
 
 class ExampleViewModel(
