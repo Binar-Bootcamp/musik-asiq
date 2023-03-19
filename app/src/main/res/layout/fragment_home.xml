@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layoutDirection="ltr"
+    tools:context=".ui.home.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                style="@style/TextAppearance.MusikAppStyles.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Felix Son"
+                android:textFontWeight="700"
+                tools:text="Felix Son" />
+
+            <TextView
+                style="@style/TextAppearance.MusikAppStyles.BodySmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Body Small"
+                android:textFontWeight="500"
+                tools:text="Body Small" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextAppearance.MusikAppStyles.BodyXLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hey, "
+            tools:text="Hey, " />
+
+        <TextView
+            style="@style/TextAppearance.MusikAppStyles.Heading6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Felix son 👋"
+            tools:text="Felix son 👋" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/TextAppearance.MusikAppStyles.BodySmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Let's find a good song here"
+        android:textFontWeight="500"
+        tools:text="Let's find a good song here" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="6dp">
+
+        <ImageButton
+            android:id="@+id/search_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Search"
+            android:src="@android:drawable/ic_menu_search"
+            app:tint="@color/black" />
+
+        <EditText
+            android:id="@+id/search_field"
+            style="@style/TextAppearance.MusikAppStyles.BodyXSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:hint="Search"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="6dp" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/TextAppearance.MusikAppStyles.Heading6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Most populer"
+        android:textSize="20sp"
+        tools:text="Most populer" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list_most_popular"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
