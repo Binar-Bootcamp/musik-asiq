@@ -2,11 +2,13 @@ package com.binaracademy.musikasiq.ui.onboard
 
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.widget.MediaController
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.R
 import com.binaracademy.musikasiq.databinding.FragmentOnboardBinding
+import com.binaracademy.musikasiq.ui.main.MainActivity
 import com.binaracademy.musikasiq.utils.helpers.intentTo
 
 class OnBoard : AppCompatActivity() {
@@ -38,7 +40,7 @@ class OnBoard : AppCompatActivity() {
 
         binding.apply {
             btnGetstarted.setOnClickListener{
-                intentTo("activity_selanjutnya"::class.java)
+                intentTo(MainActivity::class.java)
             }
         }
     }
