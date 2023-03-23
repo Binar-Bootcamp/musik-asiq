@@ -1,15 +1,22 @@
 package com.binaracademy.musikasiq.ui.home
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.binaracademy.musikasiq.data.model.TrackItem
 import com.binaracademy.musikasiq.databinding.ListItemMostPopularBinding
+import com.binaracademy.musikasiq.utils.helpers.DateFormatter
+import com.binaracademy.musikasiq.utils.load
+import java.util.*
 
-class MostPopularAdapter(private val populars: List<String>): RecyclerView.Adapter<MostPopularAdapter.ViewHolder>() {
+class MostPopularAdapter(private val populars: ArrayList<TrackItem> = ArrayList()): RecyclerView.Adapter<MostPopularAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ListItemMostPopularBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(popular: String) {
-            binding.tvTitleSong.text = popular
+        fun bind(popular: TrackItem) {
+            binding.imgViewPlaylistHead.load(popular.artworkUrl ?: "https://i.pravatar.cc/300")
+            binding.tvTitleSong.text = popular.title
+            binding.tvYearOfRelease.text = DateFormatter.fromISOToFormatString(popular.createdAt)
         }
     }
 
@@ -24,4 +31,10 @@ class MostPopularAdapter(private val populars: List<String>): RecyclerView.Adapt
         holder.bind(populars[position])
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun updatePopular(tracks: ArrayList<TrackItem>) {
+        this.populars.clear()
+        this.populars.addAll(tracks)
+        notifyDataSetChanged()
+    }
 }

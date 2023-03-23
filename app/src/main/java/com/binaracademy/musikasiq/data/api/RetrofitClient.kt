@@ -16,7 +16,7 @@ class RetrofitClient {
 
     fun getCustomUrlInstance(baseUrl: String) = getRetrofitInstance(baseUrl)!!
 
-    private val baseUrl = "https://soundcloud.com"
+    private val baseUrl = "https://soundcloud-scraper.p.rapidapi.com/"
 
     private val logging: HttpLoggingInterceptor
         get() = HttpLoggingInterceptor().apply {
@@ -29,6 +29,8 @@ class RetrofitClient {
                 val request = chain.request()
                 val headerInterceptedRequest = request.newBuilder()
                     .header("Content-Type", "application/json")
+                    .header("X-RapidAPI-Key", "d33489f782mshb7d6c0d91371396p12d136jsnc9e9ae06c282")
+                    .header("X-RapidAPI-Host", "soundcloud-scraper.p.rapidapi.com")
                     .method(request.method(), request.body())
                     .build()
                 chain.proceed(headerInterceptedRequest)
@@ -51,6 +53,12 @@ class RetrofitClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
+        }
+
+        if (_retrofit?.baseUrl().toString() != baseUrl) {
+            _retrofit = _retrofit?.newBuilder()
+                ?.baseUrl(baseUrl)
+                ?.build()
         }
 
         return _retrofit

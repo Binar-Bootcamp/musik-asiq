@@ -5,42 +5,55 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.binaracademy.musikasiq.databinding.FragmentHomeBinding
 import com.binaracademy.musikasiq.utils.hideSoftKeyboard
+import com.binaracademy.musikasiq.utils.load
+import com.binaracademy.musikasiq.viewmodel.HomeViewModel
 
 
 class HomeFragment : Fragment() {
 
-	private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentHomeBinding? = null
 
-	private val binding get() = _binding!!
+    private val binding get() = _binding!!
 
-	private val popularAdapter = MostPopularAdapter(listOf("Budi", "Fitri", "Adi", "Fina"))
+    private val popularAdapter = MostPopularAdapter()
 
-	override fun onCreateView(
-		inflater: LayoutInflater, container: ViewGroup?,
-		savedInstanceState: Bundle?
-	): View {
-		_binding = FragmentHomeBinding.inflate(inflater, container, false)
-		return binding.root
-	}
+    private val viewModel: HomeViewModel by viewModels()
 
-	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-		super.onViewCreated(view, savedInstanceState)
-		binding.root.setOnClickListener { it.hideSoftKeyboard() }
-		setupRecyclerView()
-	}
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-	override fun onDestroyView() {
-		super.onDestroyView()
-		_binding = null
-	}
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.root.setOnClickListener { it.hideSoftKeyboard() }
+        binding.imgViewAvatar.load("https://ui-avatars.com/api/?name=Budi Rahmawan&size=528.svg")
+        viewModel.loadPopularTracks(null)
 
-	private fun setupRecyclerView() {
-		binding.rvListMostPopular.apply {
-			adapter = popularAdapter
-			layoutManager = GridLayoutManager(activity, 2)
-		}
-	}
+        viewModel.getPopularTracks().observe(viewLifecycleOwner){
+            it.onSuccess { response ->
+                popularAdapter.updatePopular(ArrayList(response.tracks.items))
+            }
+        }
+        setupRecyclerView()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun setupRecyclerView() {
+        binding.rvListMostPopular.apply {
+            adapter = popularAdapter
+            layoutManager = GridLayoutManager(activity, 2)
+        }
+    }
 }
