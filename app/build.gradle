@@ -49,6 +49,7 @@ ext {
     activity_ktx_version = '1.6.1'
     fragment_ktx_version = '1.5.5'
     lifecycle_version = '2.6.0'
+    glide_version = '4.15.0'
 }
 
 dependencies {
@@ -57,8 +58,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.core:core-ktx:+'
-    implementation 'androidx.core:core-ktx:+'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -73,9 +72,10 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     // Retrofit and gson converter
-    implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.squareup.retrofit2:retrofit:2.6.3'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.3'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
 
     // View model and lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -84,4 +84,11 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
     implementation "androidx.activity:activity-ktx:$activity_ktx_version"
     implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
+
+    // glide dependency
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    // circle image view dependency
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
