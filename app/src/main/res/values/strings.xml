@@ -6,4 +6,12 @@
     <string name="relaxation">Relaxation</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="felix_son">Felix Son</string>
+    <string name="body_small">Body Small</string>
+    <string name="hey">Hey, </string>
+    <string name="felix_son_hey">Felix son 👋</string>
+    <string name="let_s_find_a_good_song_here">Let\'s find a good song here</string>
+    <string name="search">Search</string>
+    <string name="most_popular">Most popular</string>
+    <string name="_2022_the_shades">2022 - The shades</string>
 </resources>

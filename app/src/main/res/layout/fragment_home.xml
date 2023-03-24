@@ -1,127 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/background"
+    android:fillViewport="true"
     android:padding="16dp"
-    android:layoutDirection="ltr"
     tools:context=".ui.home.HomeFragment">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:orientation="horizontal">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_view_avatar"
-            android:layout_width="58dp"
-            android:layout_height="58dp"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background" />
+        android:layout_height="match_parent"
+        android:layoutDirection="ltr"
+        android:paddingBottom="100dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_marginBottom="32dp"
+            android:orientation="horizontal">
 
-            <TextView
-                style="@style/TextAppearance.MusikAppStyles.BodyMedium"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_view_avatar"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="16dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Felix Son"
-                android:textFontWeight="700"
-                tools:text="Felix Son" />
+                android:layout_gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                style="@style/TextAppearance.MusikAppStyles.BodySmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Body Small"
-                android:textFontWeight="500"
-                tools:text="Body Small" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fontsemibold"
+                    android:text="@string/felix_son"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    tools:text="Felix Son" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fontmedium"
+                    android:text="@string/body_small"
+                    android:textColor="@color/gray_3"
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp"
+                    tools:text="Body Small" />
+            </LinearLayout>
+
         </LinearLayout>
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fontsemibold"
+                android:text="@string/hey"
+                android:textColor="@color/greyscale_900"
+                android:textSize="32sp"
+                tools:text="Hey, " />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fontbold"
+                android:text="@string/felix_son_hey"
+                android:textColor="@color/greyscale_900"
+                android:textSize="32sp"
+                tools:text="Felix son 👋" />
+        </LinearLayout>
 
         <TextView
-            style="@style/TextAppearance.MusikAppStyles.BodyXLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hey, "
-            tools:text="Hey, " />
+            android:fontFamily="@font/fontmedium"
+            android:text="@string/let_s_find_a_good_song_here"
+            android:textColor="@color/gray_3"
+            android:textSize="16sp"
+            tools:text="Let's find a good song here" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="4dp"
+            android:background="@color/input"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="3dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/input"
+                app:hintEnabled="false"
+                app:startIconDrawable="@drawable/ic_search">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/search"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="16dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            style="@style/TextAppearance.MusikAppStyles.Heading6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Felix son 👋"
-            tools:text="Felix son 👋" />
-    </LinearLayout>
+            android:fontFamily="@font/fontbold"
+            android:text="@string/most_popular"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            tools:text="Most popular" />
 
-    <TextView
-        style="@style/TextAppearance.MusikAppStyles.BodySmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Let's find a good song here"
-        android:textFontWeight="500"
-        tools:text="Let's find a good song here" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="6dp">
-
-        <ImageButton
-            android:id="@+id/search_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Search"
-            android:src="@android:drawable/ic_menu_search"
-            app:tint="@color/black" />
-
-        <EditText
-            android:id="@+id/search_field"
-            style="@style/TextAppearance.MusikAppStyles.BodyXSmall"
-            android:layout_width="0dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list_most_popular"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:hint="Search"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:maxLines="1"
-            android:padding="6dp" />
-    </LinearLayout>
+            android:layout_marginTop="20dp"
+            app:spanCount="2"
+            tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/list_item_most_popular" />
 
-    <TextView
-        style="@style/TextAppearance.MusikAppStyles.Heading6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Most populer"
-        android:textSize="20sp"
-        tools:text="Most populer" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_list_most_popular"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        tools:listitem="@android:layout/simple_list_item_checked"
-        android:layout_marginTop="20dp" />
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.core.widget.NestedScrollView>
