@@ -3,6 +3,7 @@ package com.binaracademy.musikasiq.ui.register
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.binaracademy.musikasiq.data.room.User
@@ -20,11 +21,15 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        viewModel.registerSuccess.observe(this) {user ->
-            if (user != null){
+        viewModel.registerResult.observe(this) {result ->
+            result.onSuccess {
                 Toast.makeText(this, "Register Success", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+            }
+
+            result.onFailure {
+                Toast.makeText(this, "Register Error : ${it.message}", Toast.LENGTH_SHORT).show()
             }
         }
 

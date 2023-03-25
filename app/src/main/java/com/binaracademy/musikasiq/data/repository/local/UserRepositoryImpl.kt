@@ -1,5 +1,6 @@
 package com.binaracademy.musikasiq.data.repository.local
 
+import androidx.lifecycle.LiveData
 import com.binaracademy.musikasiq.MusicAsiqApp
 import com.binaracademy.musikasiq.data.dao.UserDao
 import com.binaracademy.musikasiq.data.room.User
@@ -16,8 +17,8 @@ class UserRepositoryImpl : UserRepository {
         }
     }
 
-    override suspend fun login(email: String, password: String) {
-        withContext(Dispatchers.IO) {
+    override suspend fun login(email: String, password: String): User {
+        return withContext(Dispatchers.IO) {
             userDao.login(email, password)
         }
     }
