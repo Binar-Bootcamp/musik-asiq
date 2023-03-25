@@ -14,6 +14,6 @@ interface UserDao {
     fun register(user: User)
 
     @Query("SELECT * FROM users WHERE email = :email AND password = :password LIMIT 1")
-    fun login(email: String, password: String): LiveData<User>
+    fun login(email: String, password: String): User
 
 }

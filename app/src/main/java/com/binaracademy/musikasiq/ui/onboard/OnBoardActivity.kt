@@ -6,7 +6,9 @@ import android.widget.MediaController
 import androidx.appcompat.app.AppCompatActivity
 import com.binaracademy.musikasiq.R
 import com.binaracademy.musikasiq.databinding.ActivityOnboardBinding
+import com.binaracademy.musikasiq.ui.login.LoginActivity
 import com.binaracademy.musikasiq.ui.main.MainActivity
+import com.binaracademy.musikasiq.ui.register.RegisterActivity
 import com.binaracademy.musikasiq.utils.helpers.intentTo
 
 class OnBoardActivity : AppCompatActivity() {
@@ -25,7 +27,7 @@ class OnBoardActivity : AppCompatActivity() {
 		
 		binding.apply {
 			btnGetStarted.setOnClickListener {
-				intentTo(MainActivity::class.java)
+				intentTo(LoginActivity::class.java)
 			}
 		}
 	}
