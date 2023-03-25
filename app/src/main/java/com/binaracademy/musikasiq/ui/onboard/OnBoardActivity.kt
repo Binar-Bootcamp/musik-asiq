@@ -2,18 +2,16 @@ package com.binaracademy.musikasiq.ui.onboard
 
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.widget.MediaController
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewbinding.R
-import com.binaracademy.musikasiq.databinding.FragmentOnboardBinding
+import com.binaracademy.musikasiq.databinding.ActivityOnboardBinding
 import com.binaracademy.musikasiq.ui.main.MainActivity
 import com.binaracademy.musikasiq.utils.helpers.intentTo
 
-class OnBoard : AppCompatActivity() {
-    private val binding: FragmentOnboardBinding by lazy {
-        FragmentOnboardBinding.inflate(layoutInflater)
+class OnBoardActivity : AppCompatActivity() {
+    private val binding: ActivityOnboardBinding by lazy {
+        ActivityOnboardBinding.inflate(layoutInflater)
     }
 
     var Videoview: VideoView? = null
@@ -21,7 +19,7 @@ class OnBoard : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.binaracademy.musikasiq.R.layout.fragment_onboard)
+        setContentView(com.binaracademy.musikasiq.R.layout.activity_onboard)
 
         Videoview = findViewById<VideoView>(com.binaracademy.musikasiq.R.id.videoView) as VideoView
 
