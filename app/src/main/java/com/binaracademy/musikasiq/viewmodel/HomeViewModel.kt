@@ -10,18 +10,16 @@ import com.binaracademy.musikasiq.data.repository.remote.SoundCloudRepositoryImp
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val soundCloudRepository: SoundCloudRepository = SoundCloudRepositoryImpl()
-): ViewModel() {
-    private val userPlaylist = MutableLiveData<Result<PopularTrackResponse>>()
-    fun getPopularTracks(): LiveData<Result<PopularTrackResponse>> = userPlaylist
-
-    var intelligence = 0
-    var strength = 0
-    var endurance = 0
-
-    fun loadPopularTracks(user: String?) {
-        viewModelScope.launch {
-            userPlaylist.value = soundCloudRepository.getPopularTracks(user)
-        }
-    }
+	private val soundCloudRepository: SoundCloudRepository = SoundCloudRepositoryImpl()
+) : ViewModel() {
+	private val userPlaylist = MutableLiveData<Result<PopularTrackResponse>>()
+	
+	fun getPopularTracks(): LiveData<Result<PopularTrackResponse>> = userPlaylist
+	
+	fun loadPopularTracks(user: String?) {
+		viewModelScope.launch {
+			userPlaylist.value = soundCloudRepository.getPopularTracks(user)
+			
+		}
+	}
 }

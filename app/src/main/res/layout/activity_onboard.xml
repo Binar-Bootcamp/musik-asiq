@@ -1,44 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_marginTop="3dp"
-    android:layout_marginEnd="3dp"
-    android:layout_marginBottom="3dp"
-    android:layout_marginStart="3dp"
-    android:background="@drawable/relative_shape"
     tools:context=".ui.onboard.OnBoardActivity">
 
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="false"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
         android:layout_alignParentTop="true" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_getstarted"
-            style="@style/Widget.MaterialComponents.Button.Icon"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="13dp"
-            android:layout_marginBottom="90dp"
-            android:background="@drawable/custom_button"
-            android:paddingTop="13dp"
-            android:text="@string/get_started"
-            app:cornerRadius="50dp"
+            android:layout_marginBottom="44dp"
+            android:background="@drawable/background_btn_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_get_started"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:paddingHorizontal="40dp"
+                android:paddingVertical="20dp"
+                android:text="@string/get_started"
+                android:textAllCaps="false"
+                android:textColor="@color/purple"
+                android:textSize="20sp"
+                app:cornerRadius="32dp" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="@font/fontbold"
+            android:gravity="center"
+            android:paddingHorizontal="60dp"
+            android:text="@string/my_journey_today_is_full_of_splashes_of_sky_water"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
