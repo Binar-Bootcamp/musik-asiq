@@ -29,7 +29,6 @@ class SplashActivity : AppCompatActivity() {
             val toMainActivity = Intent(this@SplashActivity, OnBoardActivity::class.java)
             startActivity(toMainActivity)
             finish()
-            
         }
     }
 }

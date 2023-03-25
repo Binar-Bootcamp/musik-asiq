@@ -49,10 +49,6 @@ class HomeFragment : Fragment() {
 				binding.shimmerViewContainer.visibility = View.GONE
 				popularAdapter.updatePopular(ArrayList(response.tracks.items))
 			}
-			it.onFailure {
-				binding.shimmerViewContainer.stopShimmer()
-				binding.shimmerViewContainer.visibility = View.GONE
-			}
 		}
 		setupRecyclerView()
 		setUpAction()
