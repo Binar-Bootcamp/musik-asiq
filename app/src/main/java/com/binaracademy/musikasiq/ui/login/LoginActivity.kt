@@ -9,11 +9,15 @@ import androidx.activity.viewModels
 import com.binaracademy.musikasiq.databinding.ActivityLoginBinding
 import com.binaracademy.musikasiq.ui.main.MainActivity
 import com.binaracademy.musikasiq.ui.register.RegisterActivity
+import com.binaracademy.musikasiq.utils.helpers.Constants
+import com.binaracademy.musikasiq.utils.helpers.SharedPreferencesManager
 import com.binaracademy.musikasiq.viewmodel.LoginRegisterViewModel
 
 class LoginActivity : AppCompatActivity() {
 
     private val viewModel: LoginRegisterViewModel by viewModels()
+
+    private val sharedPreferences = SharedPreferencesManager(this, Constants.APP_TABLE)
 
     private val binding : ActivityLoginBinding by lazy {
         ActivityLoginBinding.inflate(layoutInflater)
@@ -28,6 +32,8 @@ class LoginActivity : AppCompatActivity() {
 
             result.onSuccess {
                 Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
+                sharedPreferences.putString(Constants.EMAIL_SP_KEY, it.email)
+                sharedPreferences.putString(Constants.NAME_SP_KEY, it.name)
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
