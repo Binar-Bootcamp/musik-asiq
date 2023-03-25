@@ -10,6 +10,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">@android:color/transparent</color>
     <color name="primary">#5D59FF</color>
+    <color name="gray_1">#C4C4C4</color>
     <color name="gray_2">#DDDDDD</color>
     <color name="gray_3">#828282</color>
     <color name="gray_4">#959595</color>
