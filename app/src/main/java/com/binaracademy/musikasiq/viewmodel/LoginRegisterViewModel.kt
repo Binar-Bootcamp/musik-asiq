@@ -1,6 +1,6 @@
 package com.binaracademy.musikasiq.viewmodel
 
-import androidx.lifecycle.LiveData
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -33,9 +33,9 @@ class LoginRegisterViewModel(
                 val user = userRepository.login(email, password)
                 loginResult.value = Result.success(user)
             } catch (e: Exception) {
+                Log.i("Info Result", e.toString())
                 loginResult.value = Result.failure(e)
             }
         }
     }
-
 }
