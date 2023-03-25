@@ -9,12 +9,18 @@ import androidx.appcompat.app.AppCompatActivity
 import com.binaracademy.musikasiq.R
 import com.binaracademy.musikasiq.databinding.ActivityOnboardBinding
 import com.binaracademy.musikasiq.ui.login.LoginActivity
+import com.binaracademy.musikasiq.ui.main.MainActivity
+import com.binaracademy.musikasiq.utils.helpers.Constants
+import com.binaracademy.musikasiq.utils.helpers.SharedPreferencesManager
 import com.binaracademy.musikasiq.utils.helpers.intentTo
 
+@Suppress("DEPRECATION")
 class OnBoardActivity : AppCompatActivity() {
 	private val binding: ActivityOnboardBinding by lazy {
 		ActivityOnboardBinding.inflate(layoutInflater)
 	}
+	
+	private val sharedPreferences = SharedPreferencesManager(this, Constants.APP_TABLE)
 	
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -30,6 +36,8 @@ class OnBoardActivity : AppCompatActivity() {
 			)
 		}
 		
+		val email = sharedPreferences.getString(Constants.EMAIL_SP_KEY, "-")
+		
 		binding.videoView.setMediaController(null)
 		binding.videoView.setVideoURI(Uri.parse("android.resource://" + packageName + "/" + R.raw.onboarding))
 		binding.videoView.requestFocus()
@@ -37,7 +45,10 @@ class OnBoardActivity : AppCompatActivity() {
 		
 		binding.apply {
 			btnGetStarted.setOnClickListener {
-				intentTo(LoginActivity::class.java)
+				if (email !== "-")
+					intentTo(MainActivity::class.java)
+				else
+					intentTo(LoginActivity::class.java)
 			}
 		}
 	}

@@ -16,4 +16,18 @@
     <string name="get_started">Get Started</string>
     <string name="my_journey_today_is_full_of_splashes_of_sky_water">My journey today is full of splashes of sky water</string>
     <string name="search_result_for">Search Result for </string>
+    <string name="we_re_glad">we\'re glad</string>
+    <string name="you_re_here">you\'re here</string>
+    <string name="username">Username</string>
+    <string name="input_your_username">Input your username</string>
+    <string name="password">Password</string>
+    <string name="input_your_password">Input your password</string>
+    <string name="login">Login</string>
+    <string name="sudah_punya_akun">Sudah punya akun? </string>
+    <string name="daftar_sekarang"> Daftar sekarang</string>
+    <string name="name">Name</string>
+    <string name="input_your_name">Input your name</string>
+    <string name="register">Register</string>
+    <string name="login_sekarang">Login sekarang</string>
+    <string name="belum_punya_akun">Belum punya akun?</string>
 </resources>
