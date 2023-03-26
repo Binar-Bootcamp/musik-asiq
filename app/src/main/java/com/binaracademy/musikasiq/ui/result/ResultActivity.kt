@@ -1,13 +1,12 @@
 package com.binaracademy.musikasiq.ui.result
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.binaracademy.musikasiq.databinding.ActivityResultBinding
 import com.binaracademy.musikasiq.data.model.dummy.Result
 import com.binaracademy.musikasiq.data.model.dummy.ResultsData
-import com.binaracademy.musikasiq.ui.onboard.OnBoardActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -26,6 +25,8 @@ class ResultActivity : AppCompatActivity() {
 		GlobalScope.launch {
 			delay(2000L)
 			list.addAll(ResultsData.listData)
+			binding.shimmerViewContainer.stopShimmer()
+			binding.shimmerViewContainer.visibility = View.GONE
 		}
 		setupRecyclerView()
 		setupAction()
