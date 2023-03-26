@@ -1,5 +1,6 @@
 package com.binaracademy.musikasiq.ui.relaxation
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.binaracademy.musikasiq.databinding.FragmentRelaxationBinding
+import com.binaracademy.musikasiq.ui.profile.ProfileActivity
+import com.binaracademy.musikasiq.utils.helpers.Constants
+import com.binaracademy.musikasiq.utils.helpers.SharedPreferencesManager
+import com.binaracademy.musikasiq.utils.load
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -26,7 +31,7 @@ class RelaxationFragment : Fragment() {
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
-	): View? {
+	): View {
 		_binding = FragmentRelaxationBinding.inflate(inflater, container, false)
 		return binding.root
 	}
@@ -36,6 +41,14 @@ class RelaxationFragment : Fragment() {
 		
 		initData()
 		initView()
+		setupAction()
+	}
+	
+	private fun setupAction() {
+		binding.imgViewAvatar.setOnClickListener {
+			val intent = Intent(this.requireContext(), ProfileActivity::class.java)
+			startActivity(intent)
+		}
 	}
 	
 	override fun onDestroyView() {
@@ -46,6 +59,18 @@ class RelaxationFragment : Fragment() {
 	private fun initData() {
 		fragmentList.add(MusicFragment())
 		fragmentList.add(VideoFragment())
+		
+		val sharedPreferences = SharedPreferencesManager(requireContext(), Constants.APP_TABLE)
+		
+		val name = sharedPreferences.getString(Constants.NAME_SP_KEY, "Guest")
+		val email = sharedPreferences.getString(Constants.EMAIL_SP_KEY, "root@example.com")
+		
+		binding.tvName.text = name
+		binding.tvUsername.text = email
+		
+		binding.imgViewAvatar.load(
+			"https://ui-avatars.com/api/?name=$name&size=528.svg"
+		)
 	}
 	
 	private fun initView() {

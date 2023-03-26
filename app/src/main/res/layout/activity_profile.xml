@@ -39,6 +39,7 @@
         android:fontFamily="@font/fontmedium"
         android:text="@string/your_personal_data_is_on_this_page"
         android:textSize="12sp"
+        android:textColor="@color/gray_3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -56,11 +57,11 @@
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/fontbold"
         android:text="@string/felix_son"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/photo_profile" />
@@ -72,86 +73,86 @@
         android:layout_marginTop="4dp"
         android:fontFamily="@font/fontsemibold"
         android:text="@string/status_login"
-        android:textSize="20sp"
+        android:textSize="14sp"
+        android:textColor="@color/gray_3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
     <LinearLayout
         android:id="@+id/vg_username"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="500dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="44dp"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tvStatus">
 
         <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
             android:background="@drawable/circle_button"
             android:src="@drawable/ic_account"
             tools:ignore="NoSpeakableTextPresentCheck" />
 
         <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_weight="1"
                 android:fontFamily="@font/fontbold"
-                android:padding="5dp"
                 android:text="@string/username"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvUsername"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_weight="1"
                 android:fontFamily="@font/fontbold"
-                android:padding="5dp"
                 android:text="@string/felix_son"
-                android:textSize="15sp" />
+                android:textSize="16sp"
+                android:textColor="@color/gray_3"/>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/vg_logout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginHorizontal="32dp"
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vg_username">
 
         <ImageButton
             android:id="@+id/btn_logout"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
             android:background="@drawable/circle_button"
             android:backgroundTint="#FF0202"
             android:src="@drawable/ic_logout"
             tools:ignore="NoSpeakableTextPresentCheck" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginStart="10dp"
-            android:gravity="center"
             android:fontFamily="@font/fontbold"
             android:padding="5dp"
             android:text="@string/logout"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
