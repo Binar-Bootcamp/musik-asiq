@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.binaracademy.musikasiq.data.model.dummy.Video
 import com.binaracademy.musikasiq.data.model.dummy.VideosData
 import com.binaracademy.musikasiq.databinding.FragmentVideoBinding
+import com.binaracademy.musikasiq.ui.home.HomeFragment
 import com.binaracademy.musikasiq.ui.videoplayer.VideoPlayerActivity
 
 class VideoFragment : Fragment() {

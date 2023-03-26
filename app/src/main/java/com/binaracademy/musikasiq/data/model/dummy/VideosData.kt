@@ -20,9 +20,9 @@ object VideosData {
 	)
 	
 	private val resultVideoUrl = arrayOf(
-		"https://i.pravatar.cc/300",
-		"https://i.pravatar.cc/300",
-		"https://i.pravatar.cc/300",
+		"https://firebasestorage.googleapis.com/v0/b/amply-5eba6.appspot.com/o/Beach.mp4?alt=media&token=8548b408-190e-4394-9a6e-1cd68db8c5f5",
+		"https://firebasestorage.googleapis.com/v0/b/amply-5eba6.appspot.com/o/River.mp4?alt=media&token=9175c957-8def-497d-bade-6076f63f4ba4",
+		"https://firebasestorage.googleapis.com/v0/b/amply-5eba6.appspot.com/o/Rain.mp4?alt=media&token=fa0fdafe-93be-49ec-aac6-7fe3e8bae85b",
 	)
 	
 	val listData: ArrayList<Video>

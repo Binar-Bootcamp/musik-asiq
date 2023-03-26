@@ -30,9 +30,6 @@
     <string name="register">Register</string>
     <string name="login_sekarang">Login sekarang</string>
     <string name="belum_punya_akun">Belum punya akun?</string>
-    <string name="song_title">Title</string>
-    <string name="tv_time">Time</string>
-    <string name="play_button">Play</string>
     <string name="title_activity_video_player">VideoPlayerActivity</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
@@ -43,4 +40,5 @@
     <string name="song_title">Photograph</string>
     <string name="tv_time">0:00</string>
     <string name="play_button">play_button_description</string>
+    <string name="deskripsi_video">Deskripsi Video</string>
 </resources>
