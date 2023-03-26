@@ -104,14 +104,15 @@ class MediaPlayerActivity : AppCompatActivity() {
             })
 
             btnBack.setOnClickListener {
+                mediaPlayer.stop()
                 finish()
             }
 
-            btnBackward.setOnClickListener {
+            btnPrevSong.setOnClickListener {
 
             }
 
-            btnForward.setOnClickListener {
+            btnNextSong.setOnClickListener {
 
             }
 
