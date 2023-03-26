@@ -76,4 +76,10 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textAllCaps">false</item>
     </style>
+    <style name="Theme.MusikAsiq.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.MusikAsiq.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.MusikAsiq.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
