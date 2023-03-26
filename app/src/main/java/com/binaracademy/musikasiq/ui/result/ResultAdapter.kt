@@ -1,5 +1,6 @@
 package com.binaracademy.musikasiq.ui.result
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.binaracademy.musikasiq.R
+import com.binaracademy.musikasiq.data.model.TrackItem
 import com.binaracademy.musikasiq.data.model.dummy.Result
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -36,7 +38,14 @@ class ResultAdapter(private val listResult: ArrayList<Result>) :
 	override fun getItemCount(): Int {
 		return listResult.size
 	}
-	
+
+	@SuppressLint("NotifyDataSetChanged")
+	fun updateResult(results: ArrayList<Result>) {
+		this.listResult.clear()
+		this.listResult.addAll(results)
+		notifyDataSetChanged()
+	}
+
 	inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 		var tvName: TextView = itemView.findViewById(R.id.tv_title_song)
 		var tvDetail: TextView = itemView.findViewById(R.id.tv_year_of_release)

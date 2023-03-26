@@ -9,8 +9,11 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.binaracademy.musikasiq.R
 import com.binaracademy.musikasiq.databinding.FragmentHomeBinding
 import com.binaracademy.musikasiq.ui.result.ResultActivity
+import com.binaracademy.musikasiq.utils.helpers.Constants
+import com.binaracademy.musikasiq.utils.helpers.SharedPreferencesManager
 import com.binaracademy.musikasiq.utils.hideSoftKeyboard
 import com.binaracademy.musikasiq.utils.load
 import com.binaracademy.musikasiq.viewmodel.HomeViewModel
@@ -24,9 +27,8 @@ class HomeFragment : Fragment() {
 	private val popularAdapter = MostPopularAdapter()
 	
 	private val viewModel: HomeViewModel by viewModels()
-	
-	val name = "Ryan"
-	
+
+
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
@@ -38,11 +40,32 @@ class HomeFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		binding.root.setOnClickListener { it.hideSoftKeyboard() }
-		binding.imgViewAvatar.load("https://ui-avatars.com/api/?name=${name}&size=528.svg")
+		// load user login name to render avatar
+		val sharedPreferences = SharedPreferencesManager(requireContext(), Constants.APP_TABLE)
+		val name = sharedPreferences.getString(Constants.NAME_SP_KEY, "Guest")
+		val email = sharedPreferences.getString(Constants.EMAIL_SP_KEY, "root@example.com")
+		binding.tvEmailAvatar.text = email
+		binding.tvNameAvatar.text = name
+		binding.tvWelcomeName.text = context?.getString(R.string.name_with_hai, name)
+
+		binding.imgViewAvatar.load(
+			"https://ui-avatars.com/api/?name=$name&size=528.svg"
+		)
+		// load popular track and start loading shimmer
 		viewModel.loadPopularTracks(null)
-		
 		binding.shimmerViewContainer.startShimmer()
-		
+
+		setupObserver()
+		setupRecyclerView()
+		setUpAction()
+	}
+
+	override fun onDestroyView() {
+		super.onDestroyView()
+		_binding = null
+	}
+
+	private fun setupObserver() {
 		viewModel.getPopularTracks().observe(viewLifecycleOwner) {
 			it.onSuccess { response ->
 				binding.shimmerViewContainer.stopShimmer()
@@ -50,15 +73,8 @@ class HomeFragment : Fragment() {
 				popularAdapter.updatePopular(ArrayList(response.tracks.items))
 			}
 		}
-		setupRecyclerView()
-		setUpAction()
 	}
-	
-	override fun onDestroyView() {
-		super.onDestroyView()
-		_binding = null
-	}
-	
+
 	private fun setupRecyclerView() {
 		binding.rvListMostPopular.apply {
 			adapter = popularAdapter
