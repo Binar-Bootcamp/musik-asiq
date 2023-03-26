@@ -73,8 +73,10 @@
                 android:text="@string/hey"
                 android:textColor="@color/greyscale_900"
                 android:textSize="32sp"
-                tools:text="Hey, " />
-
+                tools:text="Hey," />
+            <View
+                android:layout_width="5dp"
+                android:layout_height="0dp"/>
             <TextView
                 android:id="@+id/tv_welcome_name"
                 android:layout_width="match_parent"

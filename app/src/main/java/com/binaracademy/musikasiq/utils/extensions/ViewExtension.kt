@@ -5,6 +5,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * Extension function to hide the soft keyboard for a view.
@@ -23,4 +24,16 @@ fun ImageView.load(url: String) {
     Glide.with(this.context)
         .load(url)
         .into(this)
+}
+
+fun View.showSnackbar(
+    message: String,
+    actionMessage: String = "Retry",
+    callback: View.OnClickListener?
+) {
+    val snackbar = Snackbar.make(this, message, Snackbar.LENGTH_LONG)
+    if (callback != null) {
+        snackbar.setAction(actionMessage, callback)
+    }
+    snackbar.show()
 }

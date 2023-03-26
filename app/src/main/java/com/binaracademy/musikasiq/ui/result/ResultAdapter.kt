@@ -9,12 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.binaracademy.musikasiq.R
 import com.binaracademy.musikasiq.data.model.TrackItem
-import com.binaracademy.musikasiq.data.model.dummy.Result
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import com.binaracademy.musikasiq.utils.load
 import java.util.*
 
-class ResultAdapter(private val listResult: ArrayList<Result>) :
+class ResultAdapter(private val listResult: ArrayList<TrackItem>) :
 	RecyclerView.Adapter<ResultAdapter.ViewHolder>() {
 	
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,14 +23,10 @@ class ResultAdapter(private val listResult: ArrayList<Result>) :
 	
 	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 		val data = listResult[position]
-		
-		Glide.with(holder.itemView.context)
-			.load(data.photo)
-			.apply(RequestOptions().override(55, 55))
-			.into(holder.imgPhoto)
-		
-		holder.tvName.text = data.name
-		holder.tvDetail.text = data.detail
+
+		holder.imgPhoto.load(data.artworkUrl ?: "https://i.pravatar.cc/300")
+		holder.tvName.text = data.title
+		holder.tvDetail.text = data.genre
 	}
 	
 	override fun getItemCount(): Int {
@@ -40,7 +34,7 @@ class ResultAdapter(private val listResult: ArrayList<Result>) :
 	}
 
 	@SuppressLint("NotifyDataSetChanged")
-	fun updateResult(results: ArrayList<Result>) {
+	fun updateResult(results: ArrayList<TrackItem>) {
 		this.listResult.clear()
 		this.listResult.addAll(results)
 		notifyDataSetChanged()
