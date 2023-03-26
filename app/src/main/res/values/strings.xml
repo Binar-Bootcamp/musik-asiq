@@ -30,4 +30,7 @@
     <string name="register">Register</string>
     <string name="login_sekarang">Login sekarang</string>
     <string name="belum_punya_akun">Belum punya akun?</string>
+    <string name="song_title">Title</string>
+    <string name="tv_time">Time</string>
+    <string name="play_button">Play</string>
 </resources>
