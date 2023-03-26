@@ -79,7 +79,12 @@
             android:textColor="@color/greyscale_900"
             android:textSize="12sp" />
 
+        <View
+            android:layout_width="5dp"
+            android:layout_height="0dp"/>
+
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_term_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/fontbold"
@@ -100,12 +105,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <include layout="@layout/list_item_shimmer_one_column" />
             <include layout="@layout/list_item_shimmer_one_column" />
-
         </LinearLayout>
-
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView

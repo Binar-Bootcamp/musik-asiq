@@ -1,17 +1,22 @@
 package com.binaracademy.musikasiq.ui.mediaplayer
 
 import android.media.MediaPlayer
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.widget.SeekBar
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.binaracademy.musikasiq.R
+import com.binaracademy.musikasiq.data.model.TrackItem
+import com.binaracademy.musikasiq.data.model.TrackItemAbstract
+import com.binaracademy.musikasiq.data.model.TrackItemOffline
 import com.binaracademy.musikasiq.databinding.ActivityMediaPlayerBinding
-import com.binaracademy.musikasiq.ui.listsong.ListSongFragment
-import com.binaracademy.musikasiq.utils.helpers.intentTo
+import com.binaracademy.musikasiq.ui.home.HomeFragment
+import com.binaracademy.musikasiq.utils.load
+import com.binaracademy.musikasiq.utils.showSnackbar
 import com.binaracademy.musikasiq.viewmodel.MediaPlayerViewModel
+import com.bumptech.glide.Glide
 
 class MediaPlayerActivity : AppCompatActivity() {
     private val binding: ActivityMediaPlayerBinding by lazy {
@@ -19,28 +24,52 @@ class MediaPlayerActivity : AppCompatActivity() {
     }
 
     lateinit var runnable: Runnable
+
     private var handler = Handler()
+
+    private lateinit var mediaPlayer: MediaPlayer
+
     private val viewModel: MediaPlayerViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        viewModel.loadPopularTracks(null)
 
-        viewModel.getPopularTracks().observe(this) {
-            it.onSuccess { response ->
+        when (val track: TrackItemAbstract? = intent.getParcelableExtra(HomeFragment.TRACK_ITEM)) {
+            is TrackItem -> {
+                viewModel.loadTrackMetaData(track.id.toString())
 
+                viewModel.getUrlToPlay().observe(this) {
+                    it.onSuccess { meta ->
+                        binding.ivSong.load(meta.artworkUrl)
+                        binding.songTitle.text = meta.title
+                        mediaPlayer = MediaPlayer().apply {
+                            setDataSource(meta.audio.first().url)
+                            prepare()
+                            start()
+                        }
 
+                        setUpAction()
+                    }
+
+                    it.onFailure { error ->
+                        binding.root.showSnackbar(error.message.toString())
+                    }
+                }
             }
+            is TrackItemOffline -> {
+                Glide.with(binding.ivSong.context)
+                    .load(track.thumbnail)
+                    .into(binding.ivSong);
+                binding.songTitle.text = track.title
+                mediaPlayer = MediaPlayer.create(this, track.songResId)
+                setUpAction()
+            }
+            else -> Log.e("ERROR", "Received data not supported" )
         }
-
-        setUpAction()
-
     }
 
     private fun setUpAction() {
-        val mediaPlayer: MediaPlayer = MediaPlayer.create(this, R.raw.mahalini_sial)
-
         mediaPlayer.setOnPreparedListener {
             val maxTime = createTimeLabel(mediaPlayer.duration)
             binding.apply {
@@ -75,7 +104,7 @@ class MediaPlayerActivity : AppCompatActivity() {
             })
 
             btnBack.setOnClickListener {
-                intentTo(ListSongFragment::class.java)
+                finish()
             }
 
             btnBackward.setOnClickListener {

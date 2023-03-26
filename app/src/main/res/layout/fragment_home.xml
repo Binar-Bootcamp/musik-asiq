@@ -38,6 +38,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_name_avatar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fontsemibold"
@@ -47,6 +48,7 @@
                     tools:text="Felix Son" />
 
                 <TextView
+                    android:id="@+id/tv_email_avatar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fontmedium"
@@ -71,13 +73,16 @@
                 android:text="@string/hey"
                 android:textColor="@color/greyscale_900"
                 android:textSize="32sp"
-                tools:text="Hey, " />
-
+                tools:text="Hey," />
+            <View
+                android:layout_width="5dp"
+                android:layout_height="0dp"/>
             <TextView
+                android:id="@+id/tv_welcome_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/fontbold"
-                android:text="@string/felix_son_hey"
+                android:text="@string/name_with_hai"
                 android:textColor="@color/greyscale_900"
                 android:textSize="32sp"
                 tools:text="Felix son 👋" />
