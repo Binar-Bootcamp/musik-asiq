@@ -1,21 +1,26 @@
 package com.binaracademy.musikasiq.data.model.dummy
 
+import com.binaracademy.musikasiq.R
+
 object VideosData {
 	private val resultNames = arrayOf(
-		"Atas Nama Cinta",
-		"Komang",
+		"Beach",
+		"Forest",
+		"Rain",
 	)
 	
-	private val resultArtists = arrayOf("Rossa", "Raim Laode")
+	private val resultArtists = arrayOf("Unknown", "Unknown", "Unknown")
 	
-	private val resultDescriptions = arrayOf("Lorem", "Lorem Ipsum")
+	private val resultDescriptions = arrayOf("Lorem", "Lorem Ipsum", "Lorem")
 	
 	private val resultImages = arrayOf(
-		"https://drive.google.com/drive/folders/1XLKdHeKTBESavYJM2BrII_Wyv7PDNn6r",
-		"https://i.pravatar.cc/300",
+		R.drawable.thumbnail_beach,
+		R.drawable.thumbnail_forest,
+		R.drawable.thumbnail_rain,
 	)
 	
 	private val resultVideoUrl = arrayOf(
+		"https://i.pravatar.cc/300",
 		"https://i.pravatar.cc/300",
 		"https://i.pravatar.cc/300",
 	)

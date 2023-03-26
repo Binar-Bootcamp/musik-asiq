@@ -54,9 +54,9 @@
             <ImageView
                 android:id="@+id/img_view_playlist_head"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="115dp"
                 android:src="@drawable/ic_launcher_background"
-                android:scaleType="centerCrop" />
+                android:scaleType="fitXY" />
 
         </androidx.cardview.widget.CardView>
 
