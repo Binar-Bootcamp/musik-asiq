@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.binaracademy.musikasiq.R
 import com.binaracademy.musikasiq.data.model.TrackItem
 import com.binaracademy.musikasiq.databinding.FragmentHomeBinding
+import com.binaracademy.musikasiq.ui.mediaplayer.MediaPlayerActivity
 import com.binaracademy.musikasiq.ui.result.ResultActivity
 import com.binaracademy.musikasiq.utils.helpers.Constants
 import com.binaracademy.musikasiq.utils.helpers.SharedPreferencesManager
-import com.binaracademy.musikasiq.utils.helpers.intentTo
 import com.binaracademy.musikasiq.utils.hideSoftKeyboard
 import com.binaracademy.musikasiq.utils.load
 import com.binaracademy.musikasiq.viewmodel.HomeViewModel
@@ -80,8 +80,9 @@ class HomeFragment : Fragment() {
 	private fun setupRecyclerView() {
 		popularAdapter.setOnItemClickCallback(object: MostPopularAdapter.OnItemClickCallback {
 			override fun onItemClick(popular: TrackItem) {
-				// TODO: push into media player and send item
-				// context?.intentTo()
+				val intent = Intent(activity, MediaPlayerActivity::class.java)
+				intent.putExtra(TRACK_ITEM, popular)
+				startActivity(intent); activity?.finish()
 			}
 		})
 
@@ -111,6 +112,7 @@ class HomeFragment : Fragment() {
 	
 	companion object {
 		const val KEYWORD = "KEYWORD"
+		const val TRACK_ITEM = "TRACK_ITEM"
 	}
 	
 }

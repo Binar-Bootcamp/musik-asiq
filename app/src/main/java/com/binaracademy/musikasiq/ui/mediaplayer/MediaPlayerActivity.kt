@@ -7,9 +7,13 @@ import android.os.Handler
 import android.widget.SeekBar
 import androidx.activity.viewModels
 import com.binaracademy.musikasiq.R
+import com.binaracademy.musikasiq.data.model.TrackItem
 import com.binaracademy.musikasiq.databinding.ActivityMediaPlayerBinding
+import com.binaracademy.musikasiq.ui.home.HomeFragment
 import com.binaracademy.musikasiq.ui.listsong.ListSongFragment
 import com.binaracademy.musikasiq.utils.helpers.intentTo
+import com.binaracademy.musikasiq.utils.load
+import com.binaracademy.musikasiq.utils.showSnackbar
 import com.binaracademy.musikasiq.viewmodel.MediaPlayerViewModel
 
 class MediaPlayerActivity : AppCompatActivity() {
@@ -18,28 +22,41 @@ class MediaPlayerActivity : AppCompatActivity() {
     }
 
     lateinit var runnable: Runnable
+
     private var handler = Handler()
+
+    private lateinit var mediaPlayer: MediaPlayer
+
     private val viewModel: MediaPlayerViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        viewModel.loadPopularTracks(null)
 
-        viewModel.getPopularTracks().observe(this) {
-            it.onSuccess { response ->
+        val track = intent.getParcelableExtra<TrackItem>(HomeFragment.TRACK_ITEM)
+        viewModel.loadTrackMetaData(track?.id.toString())
 
+        viewModel.getUrlToPlay().observe(this) {
+            it.onSuccess { meta ->
+                binding.ivSong.load(meta.artworkUrl)
+                binding.songTitle.text = meta.title
+                mediaPlayer = MediaPlayer().apply {
+                    setDataSource(meta.audio.first().url)
+                    prepare()
+                    start()
+                }
 
+                setUpAction()
+            }
+
+            it.onFailure { error ->
+                binding.root.showSnackbar(error.message.toString())
             }
         }
-
-        setUpAction()
 
     }
 
     private fun setUpAction() {
-        val mediaPlayer: MediaPlayer = MediaPlayer.create(this, R.raw.mahalini_sial)
-
         mediaPlayer.setOnPreparedListener {
             val totTime = createTimeLabel(mediaPlayer.duration)
             binding.apply {

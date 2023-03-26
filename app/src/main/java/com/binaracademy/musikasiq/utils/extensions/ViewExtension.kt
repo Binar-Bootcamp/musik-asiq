@@ -29,7 +29,7 @@ fun ImageView.load(url: String) {
 fun View.showSnackbar(
     message: String,
     actionMessage: String = "Retry",
-    callback: View.OnClickListener?
+    callback: View.OnClickListener? = View.OnClickListener { }
 ) {
     val snackbar = Snackbar.make(this, message, Snackbar.LENGTH_LONG)
     if (callback != null) {

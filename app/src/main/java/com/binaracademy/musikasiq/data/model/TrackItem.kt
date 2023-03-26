@@ -46,7 +46,7 @@ data class TrackItem(
     @SerializedName("purchaseUrl")
     val purchaseUrl: String?,
     @SerializedName("releaseDate")
-    val releaseDate: String,
+    val releaseDate: String?,
     @SerializedName("repostCount")
     val repostCount: Int,
     @SerializedName("stationPermalink")
