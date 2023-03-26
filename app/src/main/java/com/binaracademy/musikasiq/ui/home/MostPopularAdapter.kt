@@ -21,7 +21,6 @@ class MostPopularAdapter(
 
 	private var onItemClickCallback: OnItemClickCallback = callback
 
-
 	inner class ViewHolder(private val binding: ListItemMostPopularBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 		fun bind(popular: TrackItem) {

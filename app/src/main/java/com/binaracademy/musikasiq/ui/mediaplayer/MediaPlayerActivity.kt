@@ -1,17 +1,15 @@
 package com.binaracademy.musikasiq.ui.mediaplayer
 
 import android.media.MediaPlayer
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.widget.SeekBar
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.binaracademy.musikasiq.R
 import com.binaracademy.musikasiq.data.model.TrackItem
 import com.binaracademy.musikasiq.databinding.ActivityMediaPlayerBinding
 import com.binaracademy.musikasiq.ui.home.HomeFragment
-import com.binaracademy.musikasiq.ui.listsong.ListSongFragment
-import com.binaracademy.musikasiq.utils.helpers.intentTo
 import com.binaracademy.musikasiq.utils.load
 import com.binaracademy.musikasiq.utils.showSnackbar
 import com.binaracademy.musikasiq.viewmodel.MediaPlayerViewModel
@@ -91,7 +89,7 @@ class MediaPlayerActivity : AppCompatActivity() {
             })
 
             btnBack.setOnClickListener {
-                intentTo(ListSongFragment::class.java)
+                finish()
             }
 
             btnBackward.setOnClickListener {
