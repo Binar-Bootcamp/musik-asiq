@@ -13,6 +13,7 @@ import com.binaracademy.musikasiq.R
 import com.binaracademy.musikasiq.data.model.TrackItem
 import com.binaracademy.musikasiq.databinding.FragmentHomeBinding
 import com.binaracademy.musikasiq.ui.mediaplayer.MediaPlayerActivity
+import com.binaracademy.musikasiq.ui.profile.ProfileActivity
 import com.binaracademy.musikasiq.ui.result.ResultActivity
 import com.binaracademy.musikasiq.utils.helpers.Constants
 import com.binaracademy.musikasiq.utils.helpers.SharedPreferencesManager
@@ -101,6 +102,11 @@ class HomeFragment : Fragment() {
 			} else {
 				false
 			}
+		}
+
+		binding.imgViewAvatar.setOnClickListener {
+			val intent = Intent(this.requireContext(), ProfileActivity::class.java)
+			startActivity(intent)
 		}
 	}
 	

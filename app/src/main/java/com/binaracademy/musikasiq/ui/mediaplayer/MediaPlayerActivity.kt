@@ -107,6 +107,7 @@ class MediaPlayerActivity : AppCompatActivity() {
 			})
 			
 			btnBack.setOnClickListener {
+				mediaPlayer.stop()
 				finish()
 			}
 		}
