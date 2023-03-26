@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.binaracademy.musikasiq.R
-import com.binaracademy.musikasiq.data.model.dummy.Result
 import com.binaracademy.musikasiq.data.model.dummy.Video
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions

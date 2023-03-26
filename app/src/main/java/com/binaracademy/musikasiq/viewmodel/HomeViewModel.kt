@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.binaracademy.musikasiq.data.model.PopularTrackResponse
+import com.binaracademy.musikasiq.data.model.TrackItem
+import com.binaracademy.musikasiq.data.model.Tracks
 import com.binaracademy.musikasiq.data.repository.remote.SoundCloudRepository
 import com.binaracademy.musikasiq.data.repository.remote.SoundCloudRepositoryImpl
 import kotlinx.coroutines.launch
