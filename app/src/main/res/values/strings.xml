@@ -8,7 +8,7 @@
     <string name="felix_son">Felix Son</string>
     <string name="body_small">Body Small</string>
     <string name="hey">Hey, </string>
-    <string name="felix_son_hey">Felix son 👋</string>
+    <string name="name_with_hai">%1$s 👋</string>
     <string name="let_s_find_a_good_song_here">Let\'s find a good song here</string>
     <string name="search">Search</string>
     <string name="most_popular">Most popular</string>
@@ -30,7 +30,7 @@
     <string name="register">Register</string>
     <string name="login_sekarang">Login sekarang</string>
     <string name="belum_punya_akun">Belum punya akun?</string>
-    <string name="song_title">Title</string>
-    <string name="tv_time">Time</string>
-    <string name="play_button">Play</string>
+    <string name="song_title">Photograph</string>
+    <string name="tv_time">0:00</string>
+    <string name="play_button">play_button_description</string>
 </resources>

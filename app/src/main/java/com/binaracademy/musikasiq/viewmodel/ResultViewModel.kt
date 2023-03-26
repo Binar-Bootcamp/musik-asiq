@@ -4,22 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.binaracademy.musikasiq.data.model.TrackMetaDataResponse
+import com.binaracademy.musikasiq.data.model.SearchTrackResponse
 import com.binaracademy.musikasiq.data.repository.remote.SoundCloudRepository
 import com.binaracademy.musikasiq.data.repository.remote.SoundCloudRepositoryImpl
 import kotlinx.coroutines.launch
 
-class MediaPlayerViewModel(
+class ResultViewModel(
     private val soundCloudRepository: SoundCloudRepository = SoundCloudRepositoryImpl()
 ): ViewModel() {
-    private val urlMusicToPlay = MutableLiveData<Result<TrackMetaDataResponse>>()
+    private val trackResult = MutableLiveData<Result<SearchTrackResponse>>()
 
-    fun getUrlToPlay(): LiveData<Result<TrackMetaDataResponse>> = urlMusicToPlay
+    fun getTrackResult(): LiveData<Result<SearchTrackResponse>> = trackResult
 
-    fun loadTrackMetaData(id: String) {
+    fun searchTrack(term: String) {
         viewModelScope.launch {
-            val result = soundCloudRepository.getTrackMetaData(id)
-            urlMusicToPlay.value = result
+            trackResult.value = soundCloudRepository.searchTrackByUser(term)
         }
     }
 }

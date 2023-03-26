@@ -29,7 +29,7 @@ class RetrofitClient {
                 val request = chain.request()
                 val headerInterceptedRequest = request.newBuilder()
                     .header("Content-Type", "application/json")
-                    .header("X-RapidAPI-Key", "d33489f782mshb7d6c0d91371396p12d136jsnc9e9ae06c282")
+                    .header("X-RapidAPI-Key", "1e9e41835fmsh833db31d1e8abefp106cc2jsna9e09403ea70")
                     .header("X-RapidAPI-Host", "soundcloud-scraper.p.rapidapi.com")
                     .method(request.method(), request.body())
                     .build()
