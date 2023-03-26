@@ -41,19 +41,19 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fontsemibold"
-                    android:text="@string/felix_son"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     tools:text="Felix Son" />
 
                 <TextView
+                    android:id="@+id/tv_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fontmedium"
-                    android:text="@string/body_small"
                     android:textColor="@color/gray_3"
                     android:textSize="10sp"
                     tools:ignore="SmallSp"

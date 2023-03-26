@@ -31,8 +31,9 @@ class VideoPlayerActivity : AppCompatActivity() {
 			binding.videoView.setOnPreparedListener {
 				mediaController.show()
 			}
-
+			
 			binding.videoView.setMediaController(mediaController)
+//			binding.videoView.setVideoURI(Uri.parse("https://file-examples.com/storage/feb401d325641db2fa1dfe7/2017/04/file_example_MP4_640_3MG.mp4"))
 			binding.videoView.setVideoURI(Uri.parse(data.videoUrl))
 			binding.videoView.requestFocus()
 			binding.videoView.start()
