@@ -61,7 +61,7 @@ class ResultActivity : AppCompatActivity() {
 					MediaPlayerActivity::class.java
 				)
 				intent.putExtra(HomeFragment.TRACK_ITEM, track)
-				startActivity(intent); this@ResultActivity.finish()
+				startActivity(intent)
 			}
 		})
 		binding.rvListMostPopular.apply {

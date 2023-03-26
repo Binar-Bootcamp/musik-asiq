@@ -82,7 +82,7 @@ class HomeFragment : Fragment() {
 			override fun onItemClick(popular: TrackItem) {
 				val intent = Intent(activity, MediaPlayerActivity::class.java)
 				intent.putExtra(TRACK_ITEM, popular)
-				startActivity(intent); activity?.finish()
+				startActivity(intent)
 			}
 		})
 

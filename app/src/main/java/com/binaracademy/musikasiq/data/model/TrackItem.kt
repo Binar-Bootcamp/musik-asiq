@@ -61,4 +61,4 @@ data class TrackItem(
     val visuals: @RawValue List<Any>,
     @SerializedName("waveformUrl")
     val waveformUrl: String
-) : Parcelable
+) : Parcelable, TrackItemAbstract()
