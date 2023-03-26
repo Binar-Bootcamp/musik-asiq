@@ -1,12 +1,16 @@
 package com.binaracademy.musikasiq.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
+@Parcelize
 data class TrackItem(
     @SerializedName("artworkUrl")
     val artworkUrl: String?,
     @SerializedName("caption")
-    val caption: Any,
+    val caption: String?,
     @SerializedName("commentCount")
     val commentCount: Int,
     @SerializedName("commentable")
@@ -14,7 +18,7 @@ data class TrackItem(
     @SerializedName("createdAt")
     val createdAt: String,
     @SerializedName("description")
-    val description: Any,
+    val description: String?,
     @SerializedName("durationMs")
     val durationMs: Int,
     @SerializedName("durationText")
@@ -38,9 +42,9 @@ data class TrackItem(
     @SerializedName("playCount")
     val playCount: Int,
     @SerializedName("purchaseTitle")
-    val purchaseTitle: Any,
+    val purchaseTitle: String?,
     @SerializedName("purchaseUrl")
-    val purchaseUrl: Any,
+    val purchaseUrl: String?,
     @SerializedName("releaseDate")
     val releaseDate: String,
     @SerializedName("repostCount")
@@ -48,13 +52,13 @@ data class TrackItem(
     @SerializedName("stationPermalink")
     val stationPermalink: String,
     @SerializedName("tags")
-    val tags: List<Any>,
+    val tags: List<String>?,
     @SerializedName("title")
     val title: String,
     @SerializedName("type")
     val type: String,
     @SerializedName("visuals")
-    val visuals: List<Any>,
+    val visuals: @RawValue List<Any>,
     @SerializedName("waveformUrl")
     val waveformUrl: String
-)
+) : Parcelable
