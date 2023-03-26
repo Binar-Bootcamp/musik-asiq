@@ -4,6 +4,7 @@ import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.widget.SeekBar
 import androidx.activity.viewModels
 import com.binaracademy.musikasiq.R
@@ -41,9 +42,9 @@ class MediaPlayerActivity : AppCompatActivity() {
         val mediaPlayer: MediaPlayer = MediaPlayer.create(this, R.raw.mahalini_sial)
 
         mediaPlayer.setOnPreparedListener {
-            val totTime = createTimeLabel(mediaPlayer.duration)
+            val maxTime = createTimeLabel(mediaPlayer.duration)
             binding.apply {
-                totalTime.text = totTime
+                totalTime.text = maxTime
                 seekBar.max = mediaPlayer.duration
                 mediaPlayer.start()
                 fab.setImageResource(R.drawable.ic_pause)
@@ -54,10 +55,10 @@ class MediaPlayerActivity : AppCompatActivity() {
             fab.setOnClickListener {
                 if (!mediaPlayer.isPlaying) {
                     mediaPlayer.start()
-                    binding.fab.setImageResource(R.drawable.ic_pause)
+                    fab.setImageResource(R.drawable.ic_pause)
                 } else {
                     mediaPlayer.pause()
-                    binding.fab.setImageResource(R.drawable.ic_play)
+                    fab.setImageResource(R.drawable.ic_play)
                 }
             }
 
@@ -97,8 +98,12 @@ class MediaPlayerActivity : AppCompatActivity() {
         }
 
         runnable = Runnable {
-            binding.seekBar.progress = mediaPlayer.currentPosition
-            handler.postDelayed(runnable, 1000)
+            val curTime = createTimeLabel(mediaPlayer.currentPosition)
+            binding.apply {
+                currentTime.text = curTime
+                handler.postDelayed(runnable, 1000)
+                seekBar.progress = mediaPlayer.currentPosition
+            }
         }
         handler.postDelayed(runnable, 1000)
 
@@ -109,18 +114,18 @@ class MediaPlayerActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun createTimeLabel(duration: Int): String {
         var timeLabel = ""
-        val min = duration/1000/60
-        val sec = duration/1000%60
+        val min = duration / 1000 / 60
+        val sec = duration / 1000 % 60
 
-        timeLabel = "$timeLabel : $min"
         if (sec < 10) {
-            timeLabel += "0"
+            timeLabel = "0$sec"
         } else {
             timeLabel += sec
         }
+
+        timeLabel = "$min:$timeLabel"
 
         return timeLabel
     }
