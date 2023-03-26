@@ -17,4 +17,6 @@
     <string name="my_journey_today_is_full_of_splashes_of_sky_water">My journey today is full of splashes of sky water</string>
     <string name="search_result_for">Search Result for </string>
     <string name="song_title">Song Title</string>
+    <string name="tv_time">0:00</string>
+    <string name="play_button">Play Button</string>
 </resources>

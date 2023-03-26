@@ -1,14 +1,16 @@
 package com.binaracademy.musikasiq.ui.mediaplayer
 
-import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.widget.SeekBar
+import androidx.activity.viewModels
 import com.binaracademy.musikasiq.R
 import com.binaracademy.musikasiq.databinding.ActivityMediaPlayerBinding
 import com.binaracademy.musikasiq.ui.listsong.ListSongFragment
+import com.binaracademy.musikasiq.utils.helpers.intentTo
+import com.binaracademy.musikasiq.viewmodel.MediaPlayerViewModel
 
 class MediaPlayerActivity : AppCompatActivity() {
     private val binding: ActivityMediaPlayerBinding by lazy {
@@ -17,17 +19,38 @@ class MediaPlayerActivity : AppCompatActivity() {
 
     lateinit var runnable: Runnable
     private var handler = Handler()
+    private val viewModel: MediaPlayerViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        viewModel.loadPopularTracks(null)
 
+        viewModel.getPopularTracks().observe(this) {
+            it.onSuccess { response ->
+
+
+            }
+        }
+
+        setUpAction()
+
+    }
+
+    private fun setUpAction() {
         val mediaPlayer: MediaPlayer = MediaPlayer.create(this, R.raw.mahalini_sial)
 
-        binding.apply {
-            seekBar.progress = 0
-            seekBar.max = mediaPlayer.duration
+        mediaPlayer.setOnPreparedListener {
+            val totTime = createTimeLabel(mediaPlayer.duration)
+            binding.apply {
+                totalTime.text = totTime
+                seekBar.max = mediaPlayer.duration
+                mediaPlayer.start()
+                fab.setImageResource(R.drawable.ic_pause)
+            }
+        }
 
+        binding.apply {
             fab.setOnClickListener {
                 if (!mediaPlayer.isPlaying) {
                     mediaPlayer.start()
@@ -44,22 +67,32 @@ class MediaPlayerActivity : AppCompatActivity() {
                         mediaPlayer.seekTo(position)
                     }
                 }
-
                 override fun onStartTrackingTouch(p0: SeekBar?) {
-
                 }
-
                 override fun onStopTrackingTouch(p0: SeekBar?) {
-
                 }
-
-
             })
 
             btnBack.setOnClickListener {
-                val intentTo = Intent(this@MediaPlayerActivity, ListSongFragment::class.java)
-                startActivity(intentTo)
+                intentTo(ListSongFragment::class.java)
             }
+
+            btnBackward.setOnClickListener {
+
+            }
+
+            btnForward.setOnClickListener {
+
+            }
+
+            btnLoopSong.setOnClickListener {
+
+            }
+
+            btnLoopSongWithCertainCount.setOnClickListener {
+
+            }
+
 
         }
 
@@ -68,11 +101,27 @@ class MediaPlayerActivity : AppCompatActivity() {
             handler.postDelayed(runnable, 1000)
         }
         handler.postDelayed(runnable, 1000)
+
         mediaPlayer.setOnCompletionListener {
             binding.apply {
-                fab.setImageResource(R.drawable.ic_play)
                 seekBar.progress = 0
+                fab.setImageResource(R.drawable.ic_play)
             }
         }
+    }
+
+    private fun createTimeLabel(duration: Int): String {
+        var timeLabel = ""
+        val min = duration/1000/60
+        val sec = duration/1000%60
+
+        timeLabel = "$timeLabel : $min"
+        if (sec < 10) {
+            timeLabel += "0"
+        } else {
+            timeLabel += sec
+        }
+
+        return timeLabel
     }
 }
