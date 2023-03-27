@@ -24,13 +24,13 @@ data class TrackItem(
     @SerializedName("durationText")
     val durationText: String,
     @SerializedName("genre")
-    val genre: String,
+    val genre: String?,
     @SerializedName("goPlus")
     val goPlus: Boolean,
     @SerializedName("id")
     val id: Int,
     @SerializedName("labelName")
-    val labelName: String,
+    val labelName: String?,
     @SerializedName("lastModified")
     val lastModified: String,
     @SerializedName("license")

@@ -68,9 +68,11 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/img_view_fav"
             android:layout_weight="1"
             android:layout_width="18dp"
             android:layout_height="16dp"
+            app:tint="@color/black"
             android:src="@drawable/ic_add_favorite" />
 
     </LinearLayout>
