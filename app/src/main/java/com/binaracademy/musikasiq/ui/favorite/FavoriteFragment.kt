@@ -103,9 +103,9 @@ class FavoriteFragment : Fragment() {
     private fun setupObserver() {
 
         lifecycleScope.launch {
-            viewModel.loadFavorites(viewLifecycleOwner)
             delay(3000L)
-            viewModel.getFavorites().observe(viewLifecycleOwner ){
+            viewModel.loadFavorites(viewLifecycleOwner)
+            viewModel.getFavorites().observe(viewLifecycleOwner){
                 renderUIBasedOnFavorite(it)
             }
         }
