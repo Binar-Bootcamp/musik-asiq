@@ -2,7 +2,6 @@ package com.binaracademy.musikasiq.ui.favorite
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -103,16 +102,17 @@ class FavoriteFragment : Fragment() {
     private fun setupObserver() {
 
         lifecycleScope.launch {
-            delay(3000L)
-            viewModel.loadFavorites(viewLifecycleOwner)
-            viewModel.getFavorites().observe(viewLifecycleOwner){
-                renderUIBasedOnFavorite(it)
+            delay(2000L)
+            if (view != null) {
+                viewModel.loadFavorites(viewLifecycleOwner)
+                viewModel.getFavorites().observe(viewLifecycleOwner){
+                    renderUIBasedOnFavorite(it)
+                }
             }
         }
     }
 
     private fun renderUIBasedOnFavorite(res: List<TrackItemAbstract?>) {
-        Log.d("DEBUG ----- ", "renderUIBasedOnFavorite: $res")
         binding.shimmerViewContainer.stopShimmer()
         binding.shimmerViewContainer.visibility = View.GONE
         favoriteAdapter.updateResult(ArrayList(res.filterNotNull()))
@@ -122,7 +122,7 @@ class FavoriteFragment : Fragment() {
         if (success.isEmpty()) {
             binding.tvFavoriteErr.visibility = View.VISIBLE
         } else {
-            binding.tvFavoriteErr.visibility = View.INVISIBLE
+            binding.tvFavoriteErr.visibility = View.GONE
         }
     }
 

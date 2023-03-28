@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -72,8 +73,16 @@ class HomeFragment : Fragment() {
 		viewModel.getPopularTracks().observe(viewLifecycleOwner) {
 			it.onSuccess { response ->
 				binding.shimmerViewContainer.stopShimmer()
+				binding.tvFavoriteErr.visibility = View.GONE
 				binding.shimmerViewContainer.visibility = View.GONE
 				popularAdapter.updatePopular(ArrayList(response.tracks.items))
+			}
+
+			it.onFailure {err ->
+				binding.shimmerViewContainer.stopShimmer()
+				binding.shimmerViewContainer.visibility = View.GONE
+				binding.tvFavoriteErr.visibility = View.VISIBLE
+				Toast.makeText(context, "Error to fetch: ${err.message}", Toast.LENGTH_SHORT).show()
 			}
 		}
 	}

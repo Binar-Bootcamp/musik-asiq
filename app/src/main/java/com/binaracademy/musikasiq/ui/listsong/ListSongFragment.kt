@@ -105,9 +105,16 @@ class ListSongFragment : Fragment() {
 				binding.shimmerViewContainer.visibility = View.GONE
 				listAdapter.updateResult(ArrayList(response.tracks.items))
 			}
+
+			it.onFailure {err ->
+				binding.shimmerViewContainer.stopShimmer()
+				binding.shimmerViewContainer.visibility = View.GONE
+				binding.tvFavoriteErr.visibility = View.VISIBLE
+				Toast.makeText(context, "Error to fetch: ${err.message}", Toast.LENGTH_SHORT).show()
+			}
 		}
 
-		viewModel.getFavorite().observe(viewLifecycleOwner) { it ->
+		viewModel.getFavorite().observe(viewLifecycleOwner) {
 			it.onSuccess {
 				Toast.makeText(context, "Success add favorite", Toast.LENGTH_SHORT).show()
 			}

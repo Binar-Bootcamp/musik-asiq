@@ -3,6 +3,7 @@ package com.binaracademy.musikasiq.ui.result
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,7 +11,6 @@ import com.binaracademy.musikasiq.data.model.TrackItem
 import com.binaracademy.musikasiq.databinding.ActivityResultBinding
 import com.binaracademy.musikasiq.ui.home.HomeFragment
 import com.binaracademy.musikasiq.ui.mediaplayer.MediaPlayerActivity
-import com.binaracademy.musikasiq.utils.showSnackbar
 import com.binaracademy.musikasiq.viewmodel.ResultViewModel
 
 class ResultActivity : AppCompatActivity() {
@@ -42,13 +42,11 @@ class ResultActivity : AppCompatActivity() {
 				resultAdapter.updateResult(ArrayList(tracks.tracks.items))
 			}
 
-			it.onFailure {
-				binding.root.showSnackbar(
-					message = "Failed to fetch result",
-					callback = {
-						viewModel.searchTrack(term)
-					}
-				)
+			it.onFailure {err ->
+				binding.shimmerViewContainer.stopShimmer()
+				binding.shimmerViewContainer.visibility = View.GONE
+				binding.tvFavoriteErr.visibility = View.VISIBLE
+				Toast.makeText(this, "Error to fetch: ${err.message}", Toast.LENGTH_SHORT).show()
 			}
 		}
 	}
