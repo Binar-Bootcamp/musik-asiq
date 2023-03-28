@@ -115,10 +115,10 @@ class FavoriteFragment : Fragment() {
     private fun renderUIBasedOnFavorite(res: List<TrackItemAbstract?>) {
         binding.shimmerViewContainer.stopShimmer()
         binding.shimmerViewContainer.visibility = View.GONE
-        favoriteAdapter.updateResult(ArrayList(res.filterNotNull()))
+        favoriteAdapter.updateResult(ArrayList(res.filterNotNull().distinct()))
 
         val success = arrayListOf<TrackItemAbstract>()
-        success.addAll(ArrayList(res.filterNotNull()))
+        success.addAll(ArrayList(res.filterNotNull() ))
         if (success.isEmpty()) {
             binding.tvFavoriteErr.visibility = View.VISIBLE
         } else {
