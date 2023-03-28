@@ -51,7 +51,8 @@
             android:layout_gravity="center"
             android:backgroundTint="#F5F5F5"
             android:src="@drawable/ic_favorite_active"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            app:tint="@color/black" />
     </LinearLayout>
 
     <androidx.cardview.widget.CardView

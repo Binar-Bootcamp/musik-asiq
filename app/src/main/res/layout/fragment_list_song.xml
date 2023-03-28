@@ -16,7 +16,7 @@
         android:fontFamily="@font/fontsemibold"
         android:gravity="center"
         android:text="@string/empty_exception_message"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
