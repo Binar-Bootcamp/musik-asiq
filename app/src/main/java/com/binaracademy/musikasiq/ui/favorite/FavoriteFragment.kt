@@ -104,18 +104,28 @@ class FavoriteFragment : Fragment() {
             delay(3000L)
             viewModel.loadOnlineFavorite().onSuccess {
                 it.observe(viewLifecycleOwner) { res ->
-                    binding.shimmerViewContainer.stopShimmer()
-                    binding.shimmerViewContainer.visibility = View.GONE
-                    favoriteAdapter.updateResult(ArrayList(res.filterNotNull()))
+                    renderUIBasedOnFavorite(res)
                 }
             }
             viewModel.loadOfflineFavorite().onSuccess {
                 it.observe(viewLifecycleOwner) { res ->
-                    binding.shimmerViewContainer.stopShimmer()
-                    binding.shimmerViewContainer.visibility = View.GONE
-                    favoriteAdapter.updateResult(ArrayList(res.filterNotNull()))
+                    renderUIBasedOnFavorite(res)
                 }
             }
+        }
+    }
+
+    private fun renderUIBasedOnFavorite(res: List<TrackItemAbstract?>) {
+        binding.shimmerViewContainer.stopShimmer()
+        binding.shimmerViewContainer.visibility = View.GONE
+        favoriteAdapter.updateResult(ArrayList(res.filterNotNull()))
+
+        val success = arrayListOf<TrackItemAbstract>()
+        success.addAll(ArrayList(res.filterNotNull()))
+        if (success.isEmpty()) {
+            binding.tvFavoriteErr.visibility = View.VISIBLE
+        } else {
+            binding.tvFavoriteErr.visibility = View.INVISIBLE
         }
     }
 
