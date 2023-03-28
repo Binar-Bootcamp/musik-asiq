@@ -60,7 +60,7 @@ class MediaPlayerActivity : AppCompatActivity() {
 			}
 			is TrackItemOffline -> {
 				Glide.with(binding.ivSong.context)
-					.load(track.thumbnail)
+					.load(track.thumbnail?.toInt())
 					.into(binding.ivSong)
 				binding.songTitle.text = track.title
 				mediaPlayer = MediaPlayer.create(this, track.songResId)

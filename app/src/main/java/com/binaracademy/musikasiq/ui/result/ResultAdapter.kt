@@ -41,6 +41,7 @@ class ResultAdapter(private val listResult: ArrayList<TrackItem>) :
         holder.imgPhoto.load(data.thumbnail ?: "https://i.pravatar.cc/300")
         holder.tvName.text = data.title
         holder.tvDetail.text = data.genre
+        holder.imgFav.visibility = View.INVISIBLE
     }
 
     override fun getItemCount(): Int {
@@ -62,5 +63,6 @@ class ResultAdapter(private val listResult: ArrayList<TrackItem>) :
         var tvName: TextView = itemView.findViewById(R.id.tv_title_song)
         var tvDetail: TextView = itemView.findViewById(R.id.tv_year_of_release)
         var imgPhoto: ImageView = itemView.findViewById(R.id.img_view_playlist_head)
+        var imgFav: ImageView = itemView.findViewById(R.id.img_view_fav)
     }
 }

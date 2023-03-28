@@ -3,7 +3,9 @@ package com.binaracademy.musikasiq.data.repository.local
 import androidx.lifecycle.LiveData
 import com.binaracademy.musikasiq.MusicAsiqApp
 import com.binaracademy.musikasiq.data.dao.FavoriteDao
+import com.binaracademy.musikasiq.data.model.TrackItem
 import com.binaracademy.musikasiq.data.model.TrackItemAbstract
+import com.binaracademy.musikasiq.data.model.TrackItemOffline
 import com.binaracademy.musikasiq.data.room.Favorite
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -23,27 +25,19 @@ class FavoriteRepositoryImpl : FavoriteRepository {
         }
     }
 
-    override fun getOnlineFavorites(): Result<LiveData<List<TrackItemAbstract?>>> {
-        return try {
-            val onlineFavorites = favoriteDao.getOnlineFavorites()
-            Result.success(onlineFavorites as LiveData<List<TrackItemAbstract?>>)
-        } catch (e: Exception){
-            Result.failure(e)
-        }
-    }
-
-    override fun getOfflineFavorites(): Result<LiveData<List<TrackItemAbstract?>>> {
-        return try {
-            val offlineFavorites = favoriteDao.getOfflineFavorites()
-            Result.success(offlineFavorites as LiveData<List<TrackItemAbstract?>>)
-        } catch (e: Exception){
-            Result.failure(e)
-        }
-    }
-
     override suspend fun deleteByTrack(track: TrackItemAbstract) {
         withContext(Dispatchers.IO) {
-            favoriteDao.deleteByTrack(track)
+            if (track is TrackItemOffline){
+                favoriteDao.deleteByTrackOffline(track)
+            }
+
+            if (track is TrackItem){
+                favoriteDao.deleteByTrackOnline(track)
+            }
         }
+    }
+
+    override fun getFavorites(): LiveData<List<Favorite>> {
+        return favoriteDao.getFavorites()
     }
 }

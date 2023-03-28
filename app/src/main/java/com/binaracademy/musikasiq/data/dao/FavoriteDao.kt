@@ -22,7 +22,12 @@ interface FavoriteDao {
     @Query("SELECT favorites.offline FROM favorites WHERE offline IS NOT NULL")
     fun getOfflineFavorites(): LiveData<List<TrackItemOffline?>>
 
-    @Query("DELETE FROM favorites WHERE favorites.track = :track OR favorites.offline = :track")
-    fun deleteByTrack(track: TrackItemAbstract)
+    @Query("SELECT * FROM favorites")
+    fun getFavorites(): LiveData<List<Favorite>>
 
+    @Query("DELETE FROM favorites WHERE favorites.track = :track")
+    fun deleteByTrackOnline(track: TrackItemAbstract)
+
+    @Query("DELETE FROM favorites WHERE favorites.offline = :track")
+    fun deleteByTrackOffline(track: TrackItemOffline)
 }

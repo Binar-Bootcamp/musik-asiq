@@ -8,9 +8,7 @@ interface FavoriteRepository {
 
     suspend fun saveFavorite(favorite: Favorite): Result<Favorite>
 
-    fun getOfflineFavorites(): Result<LiveData<List<TrackItemAbstract?>>>
-
-    fun getOnlineFavorites(): Result<LiveData<List<TrackItemAbstract?>>>
+    fun getFavorites(): LiveData<List<Favorite>>
 
     suspend fun deleteByTrack(track: TrackItemAbstract)
 

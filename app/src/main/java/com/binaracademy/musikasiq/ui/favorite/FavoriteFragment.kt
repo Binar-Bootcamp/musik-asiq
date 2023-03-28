@@ -2,6 +2,7 @@ package com.binaracademy.musikasiq.ui.favorite
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -100,22 +101,18 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun setupObserver() {
+
         lifecycleScope.launch {
+            viewModel.loadFavorites(viewLifecycleOwner)
             delay(3000L)
-            viewModel.loadOnlineFavorite().onSuccess {
-                it.observe(viewLifecycleOwner) { res ->
-                    renderUIBasedOnFavorite(res)
-                }
-            }
-            viewModel.loadOfflineFavorite().onSuccess {
-                it.observe(viewLifecycleOwner) { res ->
-                    renderUIBasedOnFavorite(res)
-                }
+            viewModel.getFavorites().observe(viewLifecycleOwner ){
+                renderUIBasedOnFavorite(it)
             }
         }
     }
 
     private fun renderUIBasedOnFavorite(res: List<TrackItemAbstract?>) {
+        Log.d("DEBUG ----- ", "renderUIBasedOnFavorite: $res")
         binding.shimmerViewContainer.stopShimmer()
         binding.shimmerViewContainer.visibility = View.GONE
         favoriteAdapter.updateResult(ArrayList(res.filterNotNull()))

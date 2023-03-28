@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.binaracademy.musikasiq.R
 import com.binaracademy.musikasiq.data.model.TrackItemAbstract
-import com.binaracademy.musikasiq.utils.load
+import com.bumptech.glide.Glide
 
 class FavoriteAdapter(private val listSong: ArrayList<TrackItemAbstract>) :
     RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
@@ -41,7 +41,10 @@ class FavoriteAdapter(private val listSong: ArrayList<TrackItemAbstract>) :
         holder.itemView.setOnClickListener {
             onItemClickCallback.onItemClick(data)
         }
-        holder.imgPhoto.load(data.thumbnail ?: "https://i.pravatar.cc/300")
+        val thumbnail = data.thumbnail?.toIntOrNull()
+        Glide.with(holder.imgPhoto.context)
+            .load(thumbnail ?: data.thumbnail ?: "https://i.pravatar.cc/300")
+            .into(holder.imgPhoto)
         holder.tvName.text = data.title.split("-").first()
         holder.tvDetail.text = if (data.title.split("-").size >= 2) {
             data.title.split("-")[1]

@@ -9,12 +9,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.binaracademy.musikasiq.data.model.TrackItemOffline
 import com.binaracademy.musikasiq.data.model.dummy.ResultsData
+import com.binaracademy.musikasiq.data.room.Favorite
 import com.binaracademy.musikasiq.databinding.FragmentMusicBinding
 import com.binaracademy.musikasiq.ui.home.HomeFragment
 import com.binaracademy.musikasiq.ui.mediaplayer.MediaPlayerActivity
+import com.binaracademy.musikasiq.viewmodel.MusicOfflineViewModel
 
 class MusicFragment : Fragment() {
 	private var _binding: FragmentMusicBinding? = null
@@ -22,6 +26,8 @@ class MusicFragment : Fragment() {
 	private val binding get() = _binding!!
 	
 	private var list: ArrayList<TrackItemOffline> = arrayListOf()
+
+	private val viewModel: MusicOfflineViewModel by viewModels()
 	
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +44,7 @@ class MusicFragment : Fragment() {
 		
 		binding.rvListMostPopular.visibility = View.GONE
 		list.addAll(ResultsData.musicList)
-		
+		setupObserver()
 		Handler(Looper.getMainLooper()).postDelayed({
 			binding.rvListMostPopular.visibility = View.VISIBLE
 			binding.shimmerViewContainer.stopShimmer()
@@ -47,7 +53,7 @@ class MusicFragment : Fragment() {
 		
 		setupRecyclerView()
 	}
-	
+
 	override fun onDestroyView() {
 		super.onDestroyView()
 		_binding = null
@@ -63,10 +69,31 @@ class MusicFragment : Fragment() {
 				startActivity(intent)
 			}
 		})
+		musicAdapter.setOnFavoriteClickCallback(object : MusicAdapter.OnItemClickCallback {
+			override fun onItemClick(data: TrackItemOffline) {
+				val favorite = Favorite(
+					offline = data
+				)
+				viewModel.clickFavorite(favorite)
+			}
+		})
+
 		binding.rvListMostPopular.apply {
 			adapter = musicAdapter
 			layoutManager = LinearLayoutManager(requireActivity())
 		}
 	}
-	
+
+	private fun setupObserver() {
+		viewModel.getFavorite().observe(viewLifecycleOwner) { it ->
+			it.onSuccess {
+				Toast.makeText(context, "Success add favorite", Toast.LENGTH_SHORT).show()
+			}
+
+			it.onFailure {error ->
+				Toast.makeText(context, "Failed add favorite $error", Toast.LENGTH_SHORT).show()
+				Log.e("TAG", "setupObserver: $error", )
+			}
+		}
+	}
 }
