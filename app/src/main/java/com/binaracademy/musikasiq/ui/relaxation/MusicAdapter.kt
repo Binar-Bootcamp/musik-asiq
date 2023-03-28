@@ -27,7 +27,7 @@ class MusicAdapter(private val listMusic: ArrayList<TrackItemOffline>) :
 		val data = listMusic[position]
 		
 		Glide.with(holder.itemView.context)
-			.load(data.thumbnail)
+			.load(data.thumbnail?.toInt())
 			.apply(RequestOptions().override(55, 55))
 			.into(holder.imgPhoto)
 		

@@ -42,7 +42,7 @@ class ListSongAdapter(private val listSong: ArrayList<TrackItem>) :
             onItemClickCallback.onItemClick(data)
         }
 
-        holder.imgPhoto.load(data.artworkUrl ?: "https://i.pravatar.cc/300")
+        holder.imgPhoto.load(data.thumbnail ?: "https://i.pravatar.cc/300")
         holder.tvName.text = data.title.split("-").first()
         holder.tvDetail.text = if (data.title.split("-").size >= 2) {
             data.title.split("-")[1]

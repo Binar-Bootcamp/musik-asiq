@@ -2,7 +2,6 @@ package com.binaracademy.musikasiq.ui.home
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.ScrollCaptureCallback
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.binaracademy.musikasiq.data.model.TrackItem
@@ -24,7 +23,7 @@ class MostPopularAdapter(
 	inner class ViewHolder(private val binding: ListItemMostPopularBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 		fun bind(popular: TrackItem) {
-			binding.imgViewPlaylistHead.load(popular.artworkUrl ?: "https://i.pravatar.cc/300")
+			binding.imgViewPlaylistHead.load(popular.thumbnail ?: "https://i.pravatar.cc/300")
 			binding.tvTitleSong.text = popular.title
 			binding.tvYearOfRelease.text = DateFormatter.fromISOToFormatString(popular.createdAt)
 		}

@@ -2,13 +2,16 @@ package com.binaracademy.musikasiq.ui.listsong
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.binaracademy.musikasiq.data.model.TrackItem
+import com.binaracademy.musikasiq.data.room.Favorite
 import com.binaracademy.musikasiq.databinding.FragmentListSongBinding
 import com.binaracademy.musikasiq.ui.home.HomeFragment
 import com.binaracademy.musikasiq.ui.mediaplayer.MediaPlayerActivity
@@ -67,7 +70,10 @@ class ListSongFragment : Fragment() {
 		})
 		listAdapter.setOnFavoriteClickCallback(object : ListSongAdapter.OnItemClickCallback {
 			override fun onItemClick(track: TrackItem) {
-				// TODO :: add to favorite this track
+				val favorite = Favorite(
+					track = track
+				)
+				viewModel.clickFavorite(favorite)
 			}
 		})
 		binding.rvListMostPopular.apply {
@@ -98,6 +104,17 @@ class ListSongFragment : Fragment() {
 				binding.shimmerViewContainer.stopShimmer()
 				binding.shimmerViewContainer.visibility = View.GONE
 				listAdapter.updateResult(ArrayList(response.tracks.items))
+			}
+		}
+
+		viewModel.getFavorite().observe(viewLifecycleOwner) { it ->
+			it.onSuccess {
+				Toast.makeText(context, "Success add favorite", Toast.LENGTH_SHORT).show()
+			}
+
+			it.onFailure {error ->
+				Toast.makeText(context, "Failed add favorite $error", Toast.LENGTH_SHORT).show()
+				Log.e("TAG", "setupObserver: $error", )
 			}
 		}
 	}

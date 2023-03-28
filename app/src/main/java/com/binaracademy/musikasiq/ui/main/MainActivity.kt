@@ -12,15 +12,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
-	private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-	    binding = ActivityMainBinding.inflate(layoutInflater)
-		setContentView(binding.root)
-	 
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         setupBottomNavigationBar()
-	}
+    }
 
     private fun setupBottomNavigationBar() {
         val navHostFragment = binding.containerFragment.getFragment<NavHostFragment>()

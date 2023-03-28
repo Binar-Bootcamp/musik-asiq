@@ -31,7 +31,7 @@ object ResultsData {
 				val result = TrackItemOffline()
 				result.title = resultNames[position]
 				result.description = resultDetails[position]
-				result.thumbnail = resThumbnail[position]
+				result.thumbnail = resThumbnail[position].toString()
 				result.songResId = resSongsId[position]
 				list.add(result)
 			}

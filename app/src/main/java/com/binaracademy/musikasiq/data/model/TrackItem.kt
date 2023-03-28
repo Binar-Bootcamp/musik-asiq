@@ -8,7 +8,7 @@ import kotlinx.parcelize.RawValue
 @Parcelize
 data class TrackItem(
     @SerializedName("artworkUrl")
-    val artworkUrl: String?,
+    override var thumbnail: String?,
     @SerializedName("caption")
     val caption: String?,
     @SerializedName("commentCount")
@@ -18,7 +18,7 @@ data class TrackItem(
     @SerializedName("createdAt")
     val createdAt: String,
     @SerializedName("description")
-    val description: String?,
+    override var description: String?,
     @SerializedName("durationMs")
     val durationMs: Int,
     @SerializedName("durationText")
@@ -54,7 +54,7 @@ data class TrackItem(
     @SerializedName("tags")
     val tags: List<String>?,
     @SerializedName("title")
-    val title: String,
+    override var title: String,
     @SerializedName("type")
     val type: String,
     @SerializedName("visuals")
