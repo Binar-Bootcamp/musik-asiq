@@ -14,8 +14,6 @@ class RetrofitClient {
 
     val instance: Retrofit by lazy { getRetrofitInstance()!! }
 
-    fun getCustomUrlInstance(baseUrl: String) = getRetrofitInstance(baseUrl)!!
-
     private val baseUrl = "https://soundcloud-scraper.p.rapidapi.com/"
 
     private val logging: HttpLoggingInterceptor
@@ -29,7 +27,7 @@ class RetrofitClient {
                 val request = chain.request()
                 val headerInterceptedRequest = request.newBuilder()
                     .header("Content-Type", "application/json")
-                    .header("X-RapidAPI-Key", "f11aa64009mshc5853e629aea328p1abd1djsn1b2e469edf14")
+                    .header("X-RapidAPI-Key", "1f1d6db6a3msh462d51f0c7fd6ecp1b535bjsn4bd2e2c7e39f")
                     .header("X-RapidAPI-Host", "soundcloud-scraper.p.rapidapi.com")
                     .method(request.method(), request.body())
                     .build()

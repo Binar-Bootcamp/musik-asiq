@@ -85,6 +85,8 @@
                 android:text="@string/name_with_hai"
                 android:textColor="@color/greyscale_900"
                 android:textSize="32sp"
+                android:ellipsize="middle"
+                android:maxLines="1"
                 tools:text="Felix son 👋" />
         </LinearLayout>
 
