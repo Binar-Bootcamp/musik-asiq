@@ -15,7 +15,15 @@ import java.util.*
 class MusicAdapter(private val listMusic: ArrayList<TrackItemOffline>) :
 	RecyclerView.Adapter<MusicAdapter.ViewHolder>() {
 
-	private lateinit var onItemClickCallback: OnItemClickCallback
+	private var onItemClickCallback: OnItemClickCallback = onItemClickCallback()
+
+	private var onFavClickCallback: OnItemClickCallback = onItemClickCallback()
+
+	private fun onItemClickCallback() = object : OnItemClickCallback {
+		override fun onItemClick(data: TrackItemOffline) {
+			// dont do anything :(
+		}
+	}
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 		val view: View =
@@ -27,7 +35,7 @@ class MusicAdapter(private val listMusic: ArrayList<TrackItemOffline>) :
 		val data = listMusic[position]
 		
 		Glide.with(holder.itemView.context)
-			.load(data.thumbnail)
+			.load(data.thumbnail?.toInt())
 			.apply(RequestOptions().override(55, 55))
 			.into(holder.imgPhoto)
 		
@@ -35,6 +43,9 @@ class MusicAdapter(private val listMusic: ArrayList<TrackItemOffline>) :
 		holder.tvDetail.text = data.description
 		holder.itemView.setOnClickListener{
 			onItemClickCallback.onItemClick(data)
+		}
+		holder.imgFav.setOnClickListener {
+			onFavClickCallback.onItemClick(data)
 		}
 	}
 	
@@ -46,6 +57,10 @@ class MusicAdapter(private val listMusic: ArrayList<TrackItemOffline>) :
 		this.onItemClickCallback = onItemClickCallback
 	}
 
+	fun setOnFavoriteClickCallback(onItemClickCallback: OnItemClickCallback) {
+		this.onFavClickCallback = onItemClickCallback
+	}
+
 	interface OnItemClickCallback {
 		fun onItemClick(data: TrackItemOffline)
 	}
@@ -54,5 +69,6 @@ class MusicAdapter(private val listMusic: ArrayList<TrackItemOffline>) :
 		var tvName: TextView = itemView.findViewById(R.id.tv_title_song)
 		var tvDetail: TextView = itemView.findViewById(R.id.tv_year_of_release)
 		var imgPhoto: ImageView = itemView.findViewById(R.id.img_view_playlist_head)
+		var imgFav: ImageView = itemView.findViewById(R.id.img_view_fav)
 	}
 }

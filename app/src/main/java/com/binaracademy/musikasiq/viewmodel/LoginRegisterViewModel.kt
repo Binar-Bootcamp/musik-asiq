@@ -31,7 +31,12 @@ class LoginRegisterViewModel(
         viewModelScope.launch {
             try {
                 val user = userRepository.login(email, password)
-                loginResult.value = Result.success(user)
+                if (user != null) {
+                    loginResult.value = Result.success(user)
+                    return@launch
+                }
+
+                loginResult.value = Result.failure(Exception("user doesn't exist"))
             } catch (e: Exception) {
                 Log.i("Info Result", e.toString())
                 loginResult.value = Result.failure(e)

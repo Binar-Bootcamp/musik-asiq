@@ -45,4 +45,5 @@
     <string name="your_personal_data_is_on_this_page">Your personal data is on this page</string>
     <string name="status_login">Joined 1 year ago</string>
     <string name="logout">Logout</string>
+    <string name="empty_exception_message">Terjadi kesalahan \n gagal memuat items</string>
 </resources>

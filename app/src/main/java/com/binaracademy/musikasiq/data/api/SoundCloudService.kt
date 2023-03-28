@@ -1,5 +1,6 @@
 package com.binaracademy.musikasiq.data.api
 
+import com.binaracademy.musikasiq.data.model.ListTrackResponse
 import com.binaracademy.musikasiq.data.model.PopularTrackResponse
 import com.binaracademy.musikasiq.data.model.SearchTrackResponse
 import com.binaracademy.musikasiq.data.model.TrackMetaDataResponse
@@ -23,4 +24,9 @@ interface SoundCloudService {
     suspend fun getTrackMetaData(
         @Query("track") trackId: String
     ): TrackMetaDataResponse
+
+    @GET("/v1/user/tracks")
+    suspend fun getTrackList(
+        @Query("user") user: String = "https://soundcloud.com/guyon-waton"
+    ): ListTrackResponse
 }

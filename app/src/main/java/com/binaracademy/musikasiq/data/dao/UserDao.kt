@@ -1,6 +1,5 @@
 package com.binaracademy.musikasiq.data.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -14,6 +13,6 @@ interface UserDao {
     fun register(user: User)
 
     @Query("SELECT * FROM users WHERE email = :email AND password = :password LIMIT 1")
-    fun login(email: String, password: String): User
+    fun login(email: String, password: String): User?
 
 }

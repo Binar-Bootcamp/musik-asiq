@@ -1,10 +1,10 @@
 package com.binaracademy.musikasiq.ui.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.binaracademy.musikasiq.databinding.ActivityLoginBinding
 import com.binaracademy.musikasiq.ui.main.MainActivity
 import com.binaracademy.musikasiq.ui.register.RegisterActivity
